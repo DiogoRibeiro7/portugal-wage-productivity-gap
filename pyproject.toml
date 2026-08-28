@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "portugal-wage-productivity-gap"
+version = "0.2.3"
+description = "Reproducible analysis of Portugal's wage gap relative to its productivity gap"
+authors = ["Diogo Ribeiro"]
+readme = "README.md"
+packages = [{ include = "pt_wage_gap", from = "src" }]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.0"
+pandas = "^2.2"
+requests = "^2.32"
+PyYAML = "^6.0"
+statsmodels = "^0.14"
+matplotlib = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3"
+pytest-cov = "^6.0"
+ruff = "^0.9"
+mypy = "^1.14"
+pandas-stubs = "^2.2"
+types-PyYAML = "^6.0"
+types-requests = "^2.32"
+
+[tool.poetry.scripts]
+pt-wage-gap = "pt_wage_gap.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+show_error_codes = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

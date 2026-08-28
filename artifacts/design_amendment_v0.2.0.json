@@ -1,0 +1,68 @@
+{
+  "amendment_type": "pre_retrieval_source_code_correction",
+  "changes": [
+    {
+      "field": "primary_levels.unit",
+      "from": "CP_MPPS",
+      "reason": "Use the current Eurostat percentage-of-EU27 index based on PPS at current prices, so EU27_2020 is the explicit index-100 benchmark.",
+      "to": "PC_EU27_2020_MPPS_CP"
+    },
+    {
+      "field": "primary_levels.productivity_indicator",
+      "from": "NLPR_EMP",
+      "reason": "Eurostat identifies NLPR_PER as annual nominal labour productivity per person in nama_10_lp_ulc; NLPR_EMP was not the registered Eurostat item intended by the design.",
+      "to": "NLPR_PER"
+    },
+    {
+      "field": "primary_levels.frequency",
+      "from": null,
+      "reason": "Make the annual frequency explicit in every primary API request rather than relying on dataset defaults.",
+      "to": "A"
+    }
+  ],
+  "created_at_utc": "2026-08-25T10:32:22.764133+00:00",
+  "data_exposure_statement": {
+    "interpretation": "This is a source-implementation correction inside an already motivated follow-up study, not a pristine preregistration amendment.",
+    "prior_public_evidence_exposure": true,
+    "raw_primary_files_present_before_amendment": false,
+    "successful_primary_retrieval_by_repository_before_amendment": false
+  },
+  "prior_design_lock": {
+    "path": "artifacts/design_lock_v0.1.0.json",
+    "sha256": "01c9e5cdb6cd0e8ce305282b8c8f201383b2d45c12b1b3faa165217e30239371"
+  },
+  "provider_evidence": [
+    {
+      "organisation": "Eurostat",
+      "supports": [
+        "NLPR_PER",
+        "D1_SAL_PER",
+        "nama_10_lp_ulc"
+      ],
+      "title": "National accounts based productivity indicators: overview of indicators and units",
+      "url": "https://ec.europa.eu/eurostat/documents/24987/13735645/CAPI-methodological-note.pdf/36da90b2-7adb-729a-ca69-2feb14df0ec6?t=1638286614469"
+    },
+    {
+      "organisation": "Eurostat",
+      "supports": [
+        "PPS interpretation",
+        "employment definition",
+        "nama_10_lp_ulc"
+      ],
+      "title": "Annual national accounts metadata",
+      "url": "https://ec.europa.eu/eurostat/cache/metadata/en/nama10_esms.htm"
+    }
+  ],
+  "release": "0.2.0",
+  "unchanged_design_elements": [
+    "research question",
+    "directional hypotheses H1 and H2",
+    "primary endpoint 2024",
+    "EU27 benchmark",
+    "comparator-country universe",
+    "pooled log-level model with year effects",
+    "exclusion of Portugal from model fitting",
+    "country-cluster bootstrap with 4,999 replications",
+    "non-causal interpretation"
+  ]
+}

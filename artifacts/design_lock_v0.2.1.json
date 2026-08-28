@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-08-25T11:36:24.730044+00:00",
+  "files": {
+    "configs/source_registry.yml": "56e7ee0990e303b21be7fadfb5e7806bc13a07a320c72e2e63c9f58cbcaef846",
+    "configs/study.yml": "dbbe133de2aa14fb3ecfa98fe1dce9c5032c57f06594e75c9d58e18a68f69f49",
+    "docs/data_contracts.md": "bf0506f85643048f65c33335e01dd2ac8893d79f142face62e8c1f2d91fdc861",
+    "docs/data_sources.md": "b8784698151194d0729539c08b73a059b419abf0198708f5694b299eb16aaa98",
+    "docs/empirical_design.md": "6977b1f6de1c5c924b68d31fef453e0a635a69ae1d230a4178ca8df46ab69151",
+    "src/pt_wage_gap/bulk.py": "37cd82c8d18faa0909f038ca4dba729d4e1a4ab26325c39b459caa058e5c575a",
+    "src/pt_wage_gap/cli.py": "97b21536b9415695a75e89804245ae9a5b193e5281a19382f8acfea1474a503a",
+    "src/pt_wage_gap/config.py": "3240c3481d8f1595e8b41029878223a3d6f160f3b6bf8ca0ae415fba6d31f9f2",
+    "src/pt_wage_gap/econometrics.py": "acb566d75fc83eca3c4809e942dab3a365a6dfce9b59ff81a2d6eeb9bdebff5e",
+    "src/pt_wage_gap/eurostat.py": "06c228353a49019c78679b0e86124a5dceea33c76ab1e50ec49e82a8efd9379f",
+    "src/pt_wage_gap/metrics.py": "18836ae2f7640c4a700d6836422c45a6c1e70ecc6f71e88ef065d8b4224fa58c",
+    "src/pt_wage_gap/pipeline.py": "c96380ce43a6028fe18d3fa299fc09f169857edcdc6df7fbce02c8017beea4d8",
+    "src/pt_wage_gap/snapshots.py": "f2d2ff254f01fffa0974baf411028f381cdbac7081fb604b0931f3509252457c",
+    "src/pt_wage_gap/source_contract.py": "c0fc68bee4537fb49c95a162752d938de8c9af604d7a6e1459a11fa29ff5ad54"
+  },
+  "lock_type": "prospectively_locked_follow_up",
+  "manifest_sha256": "ceecc7a1aaefe876bfe7d7dcd973ff85ca72f9dfe7cbf4b2292a488335fa64a2"
+}

@@ -1,0 +1,69 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
+\usepackage[authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\title{Is Portugal's Wage Gap Larger Than Its Productivity Gap?\\
+\large Productivity, Wage Pass-Through and the Portuguese Pay Residual}
+\author{Diogo Ribeiro}
+\date{Draft --- 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper asks whether Portugal's wage shortfall relative to European peers can be accounted for by its productivity shortfall. We distinguish a descriptive cross-country level gap from the dynamic pass-through of productivity growth into compensation. The primary measurement uses harmonised Eurostat national-accounts indicators in Purchasing Power Standards and compares the Portuguese compensation gap with the Portuguese productivity gap in the same year. A second design estimates a comparator-country wage--productivity relationship excluding Portugal and measures the Portuguese conditional wage residual. The analysis is descriptive and predictive rather than causal. [Results to be inserted only after the frozen pipeline is executed.]
+\end{abstract}
+
+\section{Introduction}
+Productivity is an important constraint on sustainable wage levels, but it does not follow that productivity differences mechanically explain observed wage differences. This distinction is central to the Portuguese case. The empirical question is therefore not whether productivity matters, but how much of Portugal's wage shortfall is quantitatively consistent with its productivity shortfall.
+
+The paper evaluates two related propositions. First, is Portugal's proportional compensation gap relative to a common European benchmark larger than its proportional productivity gap? Second, after estimating the cross-country association between productivity and compensation on comparator economies, does Portugal exhibit a persistent negative wage residual?
+
+The paper does not infer that any residual is caused by a particular institutional or distributional mechanism. Mechanism analysis is subsequent and conditional.
+
+\section{Related literature}
+The analysis builds on the broader literature documenting a decoupling between productivity and labour compensation \citep{schwellnus2017} and on firm-level evidence for Portugal \citep{mergulhao2021}. The latter finds substantial heterogeneity in the wage--productivity nexus and reports that more than two thirds of Portuguese firms in its 2010--2016 sample did not raise wages in line with observed productivity growth. Related Portuguese evidence also studies how changes in the minimum wage are associated with wage and productivity dispersion across firms \citep{afonso2023}.
+
+\section{Data}
+The primary data source is Eurostat's \texttt{nama\_10\_lp\_ulc} dataset. Compensation per employee is measured by \texttt{D1\_SAL\_PER}; productivity is measured by \texttt{NLPR\_EMP}. Both are requested as \texttt{PC\_EU27\_2020\_MPPS\_CP}, an EU27=100 index based on Purchasing Power Standards at current prices. The analysis does not calculate real growth rates from PPS levels, because PPS is designed for cross-sectional price-level adjustment rather than temporal volume measurement.
+
+Compensation per employee and productivity per employed person do not have identical denominators: the latter includes self-employed persons. We therefore treat their difference as a descriptive comparison rather than an accounting identity, and register employment-composition and hour-based robustness checks.
+
+A secondary analysis will use AMECO real compensation and productivity series for long-run decoupling and wage-share diagnostics.
+
+\section{Empirical design}
+For benchmark $B$, define
+\begin{align}
+ g^W_t &= \log\left(\frac{W_{PT,t}}{W_{B,t}}\right),\\
+ g^P_t &= \log\left(\frac{P_{PT,t}}{P_{B,t}}\right),\\
+ \delta_t &= g^W_t-g^P_t.
+\end{align}
+A negative $\delta_t$ means that Portugal's compensation gap is proportionally larger than its productivity gap.
+
+The conditional benchmark is
+\begin{equation}
+\log W_{it}=\alpha+\lambda_t+\beta\log P_{it}+\varepsilon_{it},
+\end{equation}
+estimated on comparator countries excluding Portugal. We then predict Portuguese compensation and define
+\begin{equation}
+r_{PT,t}=\log W_{PT,t}-\widehat{\log W}_{PT,t}.
+\end{equation}
+Uncertainty for the Portuguese residual is obtained by resampling complete comparator-country histories.
+
+\section{Results}
+\emph{Intentionally blank until the frozen pipeline is run on retrieved source data.}
+
+\section{Robustness and alternative benchmarks}
+Planned checks include the EU-country median, euro-area comparators, Southern European comparators, hour-based measures where coverage permits, and alternative real-compensation deflators for the time-series layer.
+
+\section{Interpretation}
+A negative Portuguese wage residual would show that Portuguese compensation is lower than predicted by the cross-country productivity relationship and common year effects. It would not, by itself, identify monopsony, labour-market deregulation, taxation, sectoral composition, bargaining institutions or the labour share as a causal mechanism.
+
+\section{Conclusion}
+\emph{To be written after empirical results are authorised.}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+\end{document}

@@ -1,0 +1,76 @@
+retrieved_for_design: "2026-08-26"
+
+sources:
+  eurostat_primary_dataset:
+    organisation: "Eurostat"
+    title: "Labour productivity and unit labour costs (nama_10_lp_ulc)"
+    url: "https://ec.europa.eu/eurostat/web/products-datasets/-/nama_10_lp_ulc"
+    role: "Primary harmonised compensation and productivity dataset"
+
+  eurostat_annual_national_accounts_metadata:
+    organisation: "Eurostat"
+    title: "Annual national accounts (nama10) metadata"
+    url: "https://ec.europa.eu/eurostat/cache/metadata/en/nama10_esms.htm"
+    role: "PPS interpretation, employment definitions and national-accounts comparability"
+
+  eurostat_productivity_metadata:
+    organisation: "Eurostat"
+    title: "Labour and capital productivity (nama_10_prod) metadata"
+    url: "https://ec.europa.eu/eurostat/cache/metadata/en/nama_10_prod_esms.htm"
+    role: "Authoritative total-economy indicator definitions for nama_10_lp_ulc, including NLPR_EMP and D1_SAL_PER"
+
+  eurostat_regional_productivity_note:
+    organisation: "Eurostat"
+    title: "National accounts based productivity indicators: overview of indicators and units"
+    url: "https://ec.europa.eu/eurostat/documents/24987/13735645/CAPI-methodological-note.pdf/36da90b2-7adb-729a-ca69-2feb14df0ec6?t=1638286614469"
+    role: "Regional-indicator cross-check; its NLPR_PER code is not the total-economy nama_10_lp_ulc identifier"
+
+  eurostat_statistics_api:
+    organisation: "Eurostat"
+    title: "API Statistics: getting started"
+    url: "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api"
+    role: "Programmatic JSON-stat retrieval contract"
+
+  eurostat_bulk_tsv:
+    organisation: "Eurostat"
+    title: "SDMX 2.1 bulk TSV download for nama_10_lp_ulc"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/nama_10_lp_ulc/?compressed=true&format=TSV"
+    role: "Provider-native offline fallback for the same registered primary dataset"
+
+  ameco_current:
+    organisation: "European Commission, DG ECFIN"
+    title: "AMECO database"
+    url: "https://economy-finance.ec.europa.eu/economic-research-and-databases/economic-databases/ameco-database_en"
+    role: "Secondary real compensation, productivity and wage-share series"
+
+  ameco_downloads:
+    organisation: "European Commission, DG ECFIN"
+    title: "Download annual data set of AMECO"
+    url: "https://economy-finance.ec.europa.eu/economic-research-and-databases/economic-databases/ameco-database/download-annual-data-set-macro-economic-database-ameco_en"
+    role: "Bulk data retrieval and reproducible vintage handling"
+
+  oecd_decoupling_2017:
+    organisation: "OECD"
+    title: "Decoupling of wages from productivity: Macro-level facts"
+    url: "https://www.oecd.org/en/publications/decoupling-of-wages-from-productivity_d4764493-en.html"
+    doi: "10.1787/d4764493-en"
+    role: "Macro-level decoupling literature"
+
+  oecd_portugal_firm_2021:
+    organisation: "OECD"
+    title: "Productivity-wage nexus at the firm-level in Portugal: Decoupling and divergences"
+    url: "https://www.oecd.org/en/publications/productivity-wage-nexus-at-the-firm-level-in-portugal_749ac20c-en.html"
+    doi: "10.1787/749ac20c-en"
+    role: "Portugal-specific firm-level evidence"
+
+  gpeari_minimum_wage_2023:
+    organisation: "GPEARI, Portuguese Ministry of Finance"
+    title: "The link between productivity and wages: The role of the minimum wage in Portugal"
+    url: "https://www.gpeari.gov.pt/documents/35086/330536/Artigo%2B05-2023-The%2Brole%2Bof%2Bminimum%2Bwage%2Bin%2BPortugal.pdf/300ab366-454d-6e83-2fb3-ab035b50dd43?t=1689163583806"
+    role: "Portugal-specific institutional mechanism literature"
+
+  oecd_taxing_wages_2026:
+    organisation: "OECD"
+    title: "Taxing Wages 2026: Portugal country note"
+    url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/04/taxing-wages-2026-country-notes_491a0e97/portugal_da445fe2/8f8e9540-en.pdf"
+    role: "Secondary labour-tax sensitivity"

@@ -1,0 +1,58 @@
+{
+  "audit_type": "pre_retrieval_total_economy_source_contract_correction",
+  "correction": {
+    "field": "primary_levels.productivity_indicator",
+    "from": "NLPR_PER",
+    "reason": "Eurostat total-economy productivity metadata for nama_10_lp_ulc defines nominal labour productivity per person employed as NLPR_EMP. The NLPR_PER identifier cited in v0.2.0 belongs to regional productivity tables and was incorrectly transferred across namespaces.",
+    "to": "NLPR_EMP"
+  },
+  "created_at_utc": "2026-08-26T18:38:08.329070+00:00",
+  "data_exposure_statement": {
+    "interpretation": "This is a provider-code correction inside an already motivated follow-up study. It does not make the study confirmatory or out of sample.",
+    "primary_empirical_release_before_correction": false,
+    "successful_primary_retrieval_by_repository_before_correction": false
+  },
+  "historical_erroneous_amendment": {
+    "path": "artifacts/design_amendment_v0.2.0.json",
+    "preserved_unchanged": true,
+    "sha256": "e961f5ce592e8ff000a8649be34150fbbfab6916ef5fd5d048686fcbfd0bfd26"
+  },
+  "prior_design_lock": {
+    "path": "artifacts/design_lock_v0.2.2.json",
+    "sha256": "4f08e2370e5c5cc0261ecde2e70ce4ef5aeec9fa07952322b511198b9bd88e99"
+  },
+  "provider_evidence": [
+    {
+      "organisation": "Eurostat",
+      "supports": [
+        "nama_10_lp_ulc",
+        "NLPR_EMP",
+        "D1_SAL_PER",
+        "total-economy definitions"
+      ],
+      "title": "Labour and capital productivity (nama_10_prod) metadata",
+      "url": "https://ec.europa.eu/eurostat/cache/metadata/en/nama_10_prod_esms.htm"
+    },
+    {
+      "organisation": "Eurostat",
+      "supports": [
+        "NLPR_PER is used in regional productivity tables",
+        "namespace distinction"
+      ],
+      "title": "National accounts based productivity indicators: overview of indicators and units",
+      "url": "https://ec.europa.eu/eurostat/documents/24987/13735645/CAPI-methodological-note.pdf/36da90b2-7adb-729a-ca69-2feb14df0ec6?t=1638286614469"
+    }
+  ],
+  "release": "0.2.3",
+  "unchanged_design_elements": [
+    "research question",
+    "directional hypotheses H1 and H2",
+    "primary endpoint 2024",
+    "EU27 benchmark",
+    "comparator-country universe",
+    "pooled log-level model with year effects",
+    "exclusion of Portugal from model fitting",
+    "country-cluster bootstrap with 4,999 replications",
+    "non-causal interpretation"
+  ]
+}

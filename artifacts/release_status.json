@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "detail": "Current design lock verifies",
+      "name": "design_lock",
+      "passed": true
+    },
+    {
+      "detail": "Canonical level panel is absent",
+      "name": "canonical_panel",
+      "passed": false
+    },
+    {
+      "detail": "Canonical panel receipt is absent",
+      "name": "panel_receipt",
+      "passed": false
+    },
+    {
+      "detail": "No verified panel receipt for source audit",
+      "name": "source_provenance",
+      "passed": false
+    },
+    {
+      "detail": "No verified panel to inspect",
+      "name": "primary_year",
+      "passed": false
+    },
+    {
+      "detail": "Analysis manifest is absent",
+      "name": "analysis_manifest",
+      "passed": false
+    },
+    {
+      "detail": "Verified inputs or outputs are absent",
+      "name": "result_recalculation",
+      "passed": false
+    },
+    {
+      "detail": "Verified bootstrap result is absent",
+      "name": "bootstrap_gate",
+      "passed": false
+    }
+  ],
+  "evaluated_at_utc": "2026-08-26T18:40:32.908670+00:00",
+  "evidence_tier": "none",
+  "passed": false,
+  "status": "blocked",
+  "study_id": "pt-wage-productivity-gap-v1",
+  "target_year": 2024
+}

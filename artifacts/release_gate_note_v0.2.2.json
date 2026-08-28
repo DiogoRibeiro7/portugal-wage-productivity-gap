@@ -1,0 +1,30 @@
+{
+  "changes": [
+    "replace execution-time design re-freezing with verification of the pre-existing design lock",
+    "require empirical CLI commands to verify the existing design lock",
+    "bind processed data to raw source files and source receipts",
+    "bind analysis outputs to data, configuration and design lock with an analysis manifest",
+    "gate creation of the primary empirical release manifest on complete provenance and bootstrap checks",
+    "recompute deterministic point estimates at release time and cross-check bootstrap summary statistics against stored draws",
+    "return a controlled Eurostat acquisition error on transport failure"
+  ],
+  "created_at_utc": "2026-08-25T18:01:34.234963+00:00",
+  "note_type": "prospective_execution_and_release_hardening",
+  "prior_design_lock": {
+    "path": "artifacts/design_lock_v0.2.1.json",
+    "sha256": "8a10ec872624e330e644a9bc7fc6d794eb4c2e133b7678d3e96d87f99fb6fe51"
+  },
+  "release": "0.2.2",
+  "scientific_design_changed": false,
+  "unchanged_design_elements": [
+    "research question",
+    "directional hypotheses H1 and H2",
+    "primary endpoint 2024",
+    "EU27 benchmark",
+    "comparator-country universe",
+    "pooled log-level model with year effects",
+    "exclusion of Portugal from model fitting",
+    "country-cluster bootstrap with 4,999 replications",
+    "non-causal interpretation"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-08-25T18:10:35.786841+00:00",
+  "files": {
+    "configs/source_registry.yml": "56e7ee0990e303b21be7fadfb5e7806bc13a07a320c72e2e63c9f58cbcaef846",
+    "configs/study.yml": "dbbe133de2aa14fb3ecfa98fe1dce9c5032c57f06594e75c9d58e18a68f69f49",
+    "docs/data_contracts.md": "96468c620798ccd1fe48345fcc346b7b7c444a1cc939e042bd5d3ca101fa2dba",
+    "docs/data_sources.md": "b8784698151194d0729539c08b73a059b419abf0198708f5694b299eb16aaa98",
+    "docs/empirical_design.md": "6977b1f6de1c5c924b68d31fef453e0a635a69ae1d230a4178ca8df46ab69151",
+    "scripts/run_pipeline.sh": "8185c6ec4fb3629965bbb7a586888506d9b567df37a78be51eb444621a5db796",
+    "src/pt_wage_gap/bulk.py": "37cd82c8d18faa0909f038ca4dba729d4e1a4ab26325c39b459caa058e5c575a",
+    "src/pt_wage_gap/cli.py": "c6f4990ca6488b66ad6068553d1adefb85c75394cb8d4c7ff313c2cc95ae93e6",
+    "src/pt_wage_gap/config.py": "3240c3481d8f1595e8b41029878223a3d6f160f3b6bf8ca0ae415fba6d31f9f2",
+    "src/pt_wage_gap/econometrics.py": "acb566d75fc83eca3c4809e942dab3a365a6dfce9b59ff81a2d6eeb9bdebff5e",
+    "src/pt_wage_gap/eurostat.py": "4122ef17e8f8d048e84c4acdffd3cd56a77c7c820cde8aba824f1860389f6325",
+    "src/pt_wage_gap/metrics.py": "18836ae2f7640c4a700d6836422c45a6c1e70ecc6f71e88ef065d8b4224fa58c",
+    "src/pt_wage_gap/pipeline.py": "ba2876e9991b8c9853c8d868a9e810a40b2bfc165d46c65bcbc4879ae03605fe",
+    "src/pt_wage_gap/release.py": "c512331cfc6c21855554f834fc591008244d7eb0b3d8d8175ec6742558c499f5",
+    "src/pt_wage_gap/snapshots.py": "f2d2ff254f01fffa0974baf411028f381cdbac7081fb604b0931f3509252457c",
+    "src/pt_wage_gap/source_contract.py": "c0fc68bee4537fb49c95a162752d938de8c9af604d7a6e1459a11fa29ff5ad54"
+  },
+  "lock_type": "prospectively_locked_follow_up",
+  "manifest_sha256": "ff9b75226bc94b2f2352064d05550d3844034977dc16de62b1ff38f04cf16229"
+}

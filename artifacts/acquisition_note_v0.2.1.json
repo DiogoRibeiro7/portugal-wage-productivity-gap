@@ -1,0 +1,27 @@
+{
+  "changes": [
+    "add official Eurostat SDMX 2.1 bulk TSV/gzip acquisition route for nama_10_lp_ulc",
+    "preserve and hash exact bulk provider bytes before filtering",
+    "add independent design-lock verification",
+    "harden typed configuration validation"
+  ],
+  "created_at_utc": "2026-08-25T11:33:40.316522+00:00",
+  "note_type": "acquisition_and_validation_patch",
+  "prior_design_lock": {
+    "path": "artifacts/design_lock_v0.2.0.json",
+    "sha256": "f67c553de2e24b24816c7cec6a20bed609411a072f1ec2f0e74e2c3679e64dcc"
+  },
+  "release": "0.2.1",
+  "scientific_design_changed": false,
+  "unchanged_design_elements": [
+    "research question",
+    "directional hypotheses H1 and H2",
+    "primary endpoint 2024",
+    "EU27 benchmark",
+    "comparator-country universe",
+    "pooled log-level model with year effects",
+    "exclusion of Portugal from model fitting",
+    "country-cluster bootstrap with 4,999 replications",
+    "non-causal interpretation"
+  ]
+}
