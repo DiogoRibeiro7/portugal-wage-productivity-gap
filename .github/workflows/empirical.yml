@@ -1,0 +1,86 @@
+name: empirical-eurostat
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - research/official-eurostat-execution
+    paths:
+      - '.github/workflows/empirical.yml'
+      - 'configs/**'
+      - 'src/**'
+      - 'scripts/run_pipeline.sh'
+      - 'artifacts/design_lock.json'
+
+permissions:
+  contents: read
+
+jobs:
+  official-eurostat-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install project
+        run: poetry install
+
+      - name: Verify prospectively locked design
+        run: poetry run pt-wage-gap verify-design-lock --config configs/study.yml
+
+      - name: Record registered Eurostat queries
+        run: |
+          mkdir -p artifacts/runtime
+          poetry run pt-wage-gap show-source-queries --config configs/study.yml \
+            | tee artifacts/runtime/eurostat_queries.txt
+          poetry run pt-wage-gap show-bulk-source-url --config configs/study.yml \
+            | tee artifacts/runtime/eurostat_bulk_url.txt
+
+      - name: Run official Eurostat analysis
+        id: empirical
+        run: bash scripts/run_pipeline.sh
+
+      - name: Record release status
+        if: always()
+        run: |
+          poetry run pt-wage-gap release-status --config configs/study.yml || true
+
+      - name: Write execution provenance
+        if: always()
+        run: |
+          mkdir -p artifacts/runtime
+          {
+            echo "github_repository=${GITHUB_REPOSITORY}"
+            echo "github_sha=${GITHUB_SHA}"
+            echo "github_ref=${GITHUB_REF}"
+            echo "github_run_id=${GITHUB_RUN_ID}"
+            echo "github_run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "runner_os=${RUNNER_OS}"
+            python --version
+            poetry --version
+          } > artifacts/runtime/github_actions_provenance.txt
+
+      - name: Upload empirical evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portugal-wage-productivity-gap-${{ github.sha }}
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            artifacts/runtime/**
+            artifacts/release_status.json
+            data/raw/eurostat/**
+            data/processed/**
+            results/**
