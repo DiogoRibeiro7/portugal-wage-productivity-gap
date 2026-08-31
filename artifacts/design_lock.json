@@ -1,24 +1,25 @@
 {
-  "created_at_utc": "2026-08-26T18:40:26.058439+00:00",
+  "created_at_utc": "2026-08-31T22:22:35.268440+00:00",
   "files": {
     "artifacts/source_contract_audit_v0.2.3.json": "282d47f964943a52924a776c9018ec6911c52cfd2d657788e8df19a9092d13c0",
+    "artifacts/source_contract_execution_audit_v0.2.4.json": "c978b6d055de8b43bb830ff4dc1097d5ceaa6b6b11fdc86bf9b6da89c434d185",
     "configs/source_registry.yml": "b902a70c6437cf59fe2bbd6f78c0636a7413ea27b87dcb4193e284d61d69faea",
-    "configs/study.yml": "0a513402a6368b864655139fc1bd58017c1c469de78d83610bb751b4c733d1c9",
+    "configs/study.yml": "dbbe133de2aa14fb3ecfa98fe1dce9c5032c57f06594e75c9d58e18a68f69f49",
     "docs/data_contracts.md": "e562deeb58afdf9a7e33ce86251a5ce400ed420b75295d4ce9e746c8ed3aebdd",
     "docs/data_sources.md": "50869038c554497460aa45792db9a4294523c13b35bf9210b30ea4ca285fc240",
     "docs/empirical_design.md": "834dae57f276d11892910a594c9193190965e77c206f58564f98fab20bcdb5b1",
     "scripts/run_pipeline.sh": "8185c6ec4fb3629965bbb7a586888506d9b567df37a78be51eb444621a5db796",
     "src/pt_wage_gap/bulk.py": "37cd82c8d18faa0909f038ca4dba729d4e1a4ab26325c39b459caa058e5c575a",
-    "src/pt_wage_gap/cli.py": "db550842f3589b7315f4f3f0be736a45f8606041834bc6df4bd0bd248ffceadf",
+    "src/pt_wage_gap/cli.py": "a006ecb3826c2a7417aad2447f04b01f61caa9f01f34265124c989d8d5c04716",
     "src/pt_wage_gap/config.py": "3240c3481d8f1595e8b41029878223a3d6f160f3b6bf8ca0ae415fba6d31f9f2",
     "src/pt_wage_gap/econometrics.py": "acb566d75fc83eca3c4809e942dab3a365a6dfce9b59ff81a2d6eeb9bdebff5e",
-    "src/pt_wage_gap/eurostat.py": "4122ef17e8f8d048e84c4acdffd3cd56a77c7c820cde8aba824f1860389f6325",
+    "src/pt_wage_gap/eurostat.py": "69d8a036952dd551b904faedb4aec6442663d712fd9b63c9b176bdb7ac373c8f",
     "src/pt_wage_gap/metrics.py": "18836ae2f7640c4a700d6836422c45a6c1e70ecc6f71e88ef065d8b4224fa58c",
     "src/pt_wage_gap/pipeline.py": "ba2876e9991b8c9853c8d868a9e810a40b2bfc165d46c65bcbc4879ae03605fe",
     "src/pt_wage_gap/release.py": "c512331cfc6c21855554f834fc591008244d7eb0b3d8d8175ec6742558c499f5",
     "src/pt_wage_gap/snapshots.py": "f2d2ff254f01fffa0974baf411028f381cdbac7081fb604b0931f3509252457c",
-    "src/pt_wage_gap/source_contract.py": "d3f607768e68f732bc3eeae5d0a68028f9464a460929f6e37f84b2e8d7d19a85"
+    "src/pt_wage_gap/source_contract.py": "c0fc68bee4537fb49c95a162752d938de8c9af604d7a6e1459a11fa29ff5ad54"
   },
   "lock_type": "prospectively_locked_follow_up",
-  "manifest_sha256": "50dcbac6c7a8b93a93f496a4b00cdb9f807006edb8ee6fb69ead75421bf5d426"
+  "manifest_sha256": "1d5e527a92e54aab8f15f8390b1e4fb6d2073657e337bd3f8aa539fbb9320936"
 }
