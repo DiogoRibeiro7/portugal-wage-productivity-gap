@@ -1,0 +1,23 @@
+name: runner-probe
+
+on:
+  push:
+    branches:
+      - diagnostic/actions-runner-probe
+    paths:
+      - '.github/workflows/runner-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Confirm runner allocation
+        run: |
+          echo "runner=$RUNNER_NAME"
+          echo "os=$RUNNER_OS"
+          uname -a
