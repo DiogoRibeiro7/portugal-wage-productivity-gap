@@ -1,0 +1,44 @@
+{
+  "audit_type": "post_partial_acquisition_source_contract_correction",
+  "correction": {
+    "field": "primary_levels.productivity_indicator",
+    "from": "NLPR_EMP",
+    "reason": "The first provider-backed execution returned an empty na_item dimension for NLPR_EMP under PC_EU27_2020_MPPS_CP. Eurostat current indicator/unit documentation maps the intended annual nominal productivity-per-person series in nama_10_lp_ulc to NLPR_PER.",
+    "to": "NLPR_PER"
+  },
+  "created_at_utc": "2026-08-31T15:39:58Z",
+  "data_exposure_statement": {
+    "conditional_residual_computable": false,
+    "primary_empirical_release_created": false,
+    "primary_gap_computable": false,
+    "productivity_values_retrieved": false,
+    "wage_values_retrieved": true
+  },
+  "execution_evidence": {
+    "artifact_id": 9764195736,
+    "artifact_sha256": "092fd9132b0d4bd94027db5780b3f111b03816221b3536b23c5a0953ada1b391",
+    "github_run_attempt": 3,
+    "github_run_id": 33316491224,
+    "github_sha": "8c2faa422e2551c48302b234682c82ea69f0398f",
+    "productivity_jsonstat_size": [
+      1,
+      1,
+      0,
+      28,
+      25
+    ],
+    "productivity_response_sha256": "e426db9b9cce2fa1eeb918d88d48645fc727a429ddd66cf98e4a752d5a3ee232",
+    "wage_response_sha256": "a570c6d6094732af27dd39e13d48fa61ae7350deea70d38c51bf3cdb935bc164"
+  },
+  "unchanged_design_elements": [
+    "research question",
+    "directional hypotheses H1 and H2",
+    "primary endpoint 2024",
+    "EU27 benchmark",
+    "comparator-country universe",
+    "pooled log-level model with year effects",
+    "Portugal excluded from model fitting",
+    "country-cluster bootstrap with 4,999 replications",
+    "non-causal interpretation"
+  ]
+}
