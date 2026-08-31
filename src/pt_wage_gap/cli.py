@@ -27,6 +27,7 @@ from pt_wage_gap.snapshots import SnapshotRole, canonical_query_url, import_json
 
 DESIGN_FILES = (
     "artifacts/source_contract_audit_v0.2.3.json",
+    "artifacts/source_contract_execution_audit_v0.2.4.json",
     "configs/study.yml",
     "configs/source_registry.yml",
     "docs/empirical_design.md",
