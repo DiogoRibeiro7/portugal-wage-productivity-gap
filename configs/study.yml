@@ -14,7 +14,7 @@ primary_levels:
   frequency: "A"
   unit: "PC_EU27_2020_MPPS_CP"
   wage_indicator: "D1_SAL_PER"
-  productivity_indicator: "NLPR_EMP"
+  productivity_indicator: "NLPR_PER"
 
 comparators:
   countries:
