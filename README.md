@@ -47,16 +47,16 @@ The primary level comparison uses Eurostat `nama_10_lp_ulc` under one exact, val
 | Frequency | `A` | Annual |
 | Unit | `PC_EU27_2020_MPPS_CP` | Percentage of EU27, based on PPS at current prices |
 | Compensation | `D1_SAL_PER` | Compensation per employee |
-| Productivity | `NLPR_EMP` | Nominal labour productivity per person employed |
+| Productivity | `NLPR_PER` | Nominal labour productivity per person employed |
 | Benchmark | `EU27_2020` | EU27 aggregate, expected to equal 100 in the selected unit |
 
-The v0.1 design used an incorrect unit code (`CP_MPPS`) but its total-economy productivity code, `NLPR_EMP`, was in fact correct. v0.2.0 mistakenly replaced that code with `NLPR_PER` after reading a Eurostat methodological table for **regional** productivity indicators. v0.2.3 corrects that namespace error before any successful primary-data retrieval by this repository. The v0.1, v0.2.0, v0.2.1 and v0.2.2 locks remain archived, and the correction is documented in `artifacts/source_contract_audit_v0.2.3.json` rather than rewriting history.
+The source-code history is preserved rather than rewritten. v0.2.3 selected `NLPR_EMP` from Eurostat's ESMS prose metadata, but the first provider-backed execution showed that this code returns no observations under the registered PPS unit. Eurostat's current indicator/unit table maps the intended annual nominal productivity-per-person series in `nama_10_lp_ulc` to `NLPR_PER`. v0.2.4 therefore restores `NLPR_PER` and records the correction as post-partial-acquisition: wage observations had been retrieved, productivity observations had not, and neither primary estimand was computable.
 
 The selected Eurostat unit is already an EU27=100 PPS index. The pipeline therefore verifies that the EU aggregate is approximately 100 for both primary series before allowing analysis.
 
 ### Denominator distinction
 
-The two indicators are deliberately not treated as an accounting identity. `D1_SAL_PER` divides employee compensation by employees, while `NLPR_EMP` divides nominal GDP by all employed persons, including self-employed persons. Cross-country differences in self-employment can therefore affect the descriptive comparison. The paper records this explicitly and registers self-employment controls and hour-based measures as robustness checks.
+The two indicators are deliberately not treated as an accounting identity. `D1_SAL_PER` divides employee compensation by employees, while `NLPR_PER` divides nominal GDP by all employed persons, including self-employed persons. Cross-country differences in self-employment can therefore affect the descriptive comparison. The paper records this explicitly and registers self-employment controls and hour-based measures as robustness checks.
 
 ## Cross-section versus time series
 
@@ -190,7 +190,7 @@ The repository runner now verifies the existing design lock before any empirical
 
 The project question was motivated by already observed Portuguese wage/productivity comparisons. This is therefore a prospectively locked **follow-up analysis**, not a pristine preregistration or an out-of-sample hypothesis test.
 
-v0.2.0 correctly fixed the PPS unit but incorrectly changed the total-economy productivity identifier from `NLPR_EMP` to the regional-table code `NLPR_PER`. v0.2.3 repairs that source-contract mistake after a direct audit of Eurostat's metadata for `nama_10_lp_ulc`. No primary Eurostat observations had been successfully retrieved by this repository before the repair, so no empirical result was available to influence the correction. v0.2.1 added the official bulk TSV route and independent lock verification, while v0.2.2 hardened the prospective execution and result-release boundary. The research question, estimands, comparator universe, 2024 primary endpoint, model and bootstrap remain unchanged.
+The first provider-backed run on 31 August 2026 retrieved the wage series but showed that the v0.2.3 `NLPR_EMP` productivity request was empty for the registered PPS unit. v0.2.4 therefore records a post-partial-acquisition source amendment to `NLPR_PER`. No productivity observations, H1 estimate, H2 residual or primary empirical release existed before this correction. v0.2.1 added the official bulk TSV route and independent lock verification, while v0.2.2 hardened the prospective execution and result-release boundary. The research question, estimands, comparator universe, 2024 primary endpoint, model and bootstrap remain unchanged.
 
 ## Language
 
