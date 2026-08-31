@@ -9,7 +9,7 @@ dataset       nama_10_lp_ulc
 frequency     A
 unit          PC_EU27_2020_MPPS_CP
 wage item     D1_SAL_PER
-productivity  NLPR_EMP
+productivity  NLPR_PER
 benchmark     EU27_2020
 ```
 
@@ -48,7 +48,7 @@ The one-file fallback accepts Eurostat's official `nama_10_lp_ulc` SDMX bulk TSV
 - annual time columns to be present;
 - the registered frequency `A`;
 - the registered unit `PC_EU27_2020_MPPS_CP`;
-- both `D1_SAL_PER` and `NLPR_EMP`;
+- both `D1_SAL_PER` and `NLPR_PER`;
 - Portugal, `EU27_2020` and every registered comparator geography;
 - coverage reaching both ends of the registered 2000–2024 study window.
 
