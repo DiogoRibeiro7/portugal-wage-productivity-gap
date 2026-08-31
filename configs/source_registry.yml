@@ -1,4 +1,4 @@
-retrieved_for_design: "2026-08-26"
+retrieved_for_design: "2026-08-31"
 
 sources:
   eurostat_primary_dataset:
@@ -17,13 +17,13 @@ sources:
     organisation: "Eurostat"
     title: "Labour and capital productivity (nama_10_prod) metadata"
     url: "https://ec.europa.eu/eurostat/cache/metadata/en/nama_10_prod_esms.htm"
-    role: "Authoritative total-economy indicator definitions for nama_10_lp_ulc, including NLPR_EMP and D1_SAL_PER"
+    role: "Concept definitions and denominator semantics; NLPR_EMP prose is checked against live dataset availability"
 
-  eurostat_regional_productivity_note:
+  eurostat_productivity_indicator_table:
     organisation: "Eurostat"
     title: "National accounts based productivity indicators: overview of indicators and units"
     url: "https://ec.europa.eu/eurostat/documents/24987/13735645/CAPI-methodological-note.pdf/36da90b2-7adb-729a-ca69-2feb14df0ec6?t=1638286614469"
-    role: "Regional-indicator cross-check; its NLPR_PER code is not the total-economy nama_10_lp_ulc identifier"
+    role: "Indicator/unit cross-check supporting NLPR_PER for the live annual total-economy contract"
 
   eurostat_statistics_api:
     organisation: "Eurostat"
