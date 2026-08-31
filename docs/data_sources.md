@@ -10,17 +10,17 @@ Primary source contract:
 |---|---|---|
 | Frequency | `A` | Annual |
 | Compensation | `D1_SAL_PER` | Compensation per employee |
-| Productivity | `NLPR_EMP` | Nominal labour productivity per person employed |
+| Productivity | `NLPR_PER` | Nominal labour productivity per person employed |
 | Unit | `PC_EU27_2020_MPPS_CP` | Percentage of EU27 based on PPS at current prices |
 | Benchmark | `EU27_2020` | EU27 aggregate, expected index 100 |
 
-Eurostat's metadata for the total-economy labour-productivity collection identifies `NLPR_EMP` as nominal labour productivity per person employed and `D1_SAL_PER` as compensation per employee. A separate Eurostat methodological table uses `NLPR_PER` for regional productivity tables; v0.2.3 records this namespace distinction explicitly. The selected current-price PPS unit remains `PC_EU27_2020_MPPS_CP`.
+Eurostat's documentation is internally inconsistent on the nominal-productivity item name. The ESMS prose describes `NLPR_EMP`, but the first provider-backed execution returned a zero-sized `na_item` dimension for `NLPR_EMP` under the registered PPS unit. The current indicator/unit table maps the intended annual nominal productivity-per-person series in `nama_10_lp_ulc` to `NLPR_PER`. The executable v0.2.4 contract therefore uses `NLPR_PER`, while preserving the v0.2.3 audit unchanged.
 
 The repository checks these codes in configuration and checks the resulting EU27=100 invariant in the canonical panel. This prevents a plausible but wrong unit or national-accounts item from silently entering the primary analysis.
 
 ### Denominator note
 
-`D1_SAL_PER` is compensation per **employee**. `NLPR_EMP` is GDP per **employed person**, where employment includes employees and self-employed persons. The primary comparison therefore is not an accounting decomposition. Self-employment composition is registered as a robustness variable.
+`D1_SAL_PER` is compensation per **employee**. `NLPR_PER` is GDP per **employed person**, where employment includes employees and self-employed persons. The primary comparison therefore is not an accounting decomposition. Self-employment composition is registered as a robustness variable.
 
 ### PPS and time
 
