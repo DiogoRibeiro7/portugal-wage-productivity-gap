@@ -1,0 +1,37 @@
+{
+  "created_at_utc": "2026-09-01T04:36:33.276834+00:00",
+  "directional_results": {
+    "bootstrap_interval_excludes_zero": true,
+    "conditional_residual_negative": false,
+    "wage_gap_larger_than_productivity_gap": false
+  },
+  "evidence_tier": "registered_eurostat_snapshot",
+  "headline_estimates": {
+    "bootstrap_ci95_log_residual": [
+      0.01913495617652585,
+      0.09373734953861401
+    ],
+    "bootstrap_ci95_residual_pct": [
+      1.9319202757572367,
+      9.82712465819488
+    ],
+    "conditional_log_residual": 0.05664113470936,
+    "conditional_residual_pct": 5.827596373138312,
+    "excess_wage_log_gap": 0.0085837436913914,
+    "excess_wage_ratio_pct": 0.8620689655172341,
+    "productivity_index_eu27_100": 81.2,
+    "productivity_shortfall_pct": 18.799999999999997,
+    "wage_index_eu27_100": 81.9,
+    "wage_shortfall_pct": 18.099999999999994
+  },
+  "interpretation": "Descriptive and predictive cross-country evidence only; no causal mechanism is identified by the primary residual.",
+  "provenance": {
+    "analysis_manifest_sha256": "375df908e245977a099093d14ba87a0fa8a07f8d1820cd8d1f2a21c90d6b3bf6",
+    "config_sha256": "dbbe133de2aa14fb3ecfa98fe1dce9c5032c57f06594e75c9d58e18a68f69f49",
+    "design_lock_sha256": "42834a1e76c9646082003fb20a090bf5ba46fec31ba0751872c7ee22f1c00adf",
+    "panel_receipt_sha256": "6182f3670834cb1230999c8ca662e05df3871408aed3f2144a891441f6b38ca2"
+  },
+  "status": "empirical_primary",
+  "study_id": "pt-wage-productivity-gap-v1",
+  "target_year": 2024
+}

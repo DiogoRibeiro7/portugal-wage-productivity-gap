@@ -13,7 +13,7 @@
 \maketitle
 
 \begin{abstract}
-This paper asks whether Portugal's wage shortfall relative to European peers can be accounted for by its productivity shortfall. We distinguish a descriptive cross-country level gap from the dynamic pass-through of productivity growth into compensation. The primary measurement uses harmonised Eurostat national-accounts indicators in Purchasing Power Standards and compares the Portuguese compensation gap with the Portuguese productivity gap in the same year. A second design estimates a comparator-country wage--productivity relationship excluding Portugal and measures the Portuguese conditional wage residual. The analysis is descriptive and predictive rather than causal. [Results to be inserted only after the frozen pipeline is executed.]
+This paper asks whether Portugal's wage shortfall relative to European peers can be accounted for by its productivity shortfall. We distinguish a descriptive cross-country level gap from the dynamic pass-through of productivity growth into compensation. The primary measurement uses harmonised Eurostat national-accounts indicators in Purchasing Power Standards and compares the Portuguese compensation gap with the Portuguese productivity gap in the same year. A second design estimates a comparator-country wage--productivity relationship excluding Portugal and measures the Portuguese conditional wage residual. In 2024, Portugal's compensation index is 81.9 relative to EU27=100, while its productivity index is 81.2. The compensation shortfall is therefore slightly smaller than the productivity shortfall, contrary to the registered directional hypothesis. The conditional Portuguese compensation residual is also positive: 5.83 percent, with a country-cluster bootstrap 95 percent interval of 1.93 to 9.83 percent. The primary results therefore do not support the proposition that Portugal has an additional negative compensation penalty after conditioning on productivity. The analysis is descriptive and predictive rather than causal.
 \end{abstract}
 
 \section{Introduction}
@@ -27,9 +27,11 @@ The paper does not infer that any residual is caused by a particular institution
 The analysis builds on the broader literature documenting a decoupling between productivity and labour compensation \citep{schwellnus2017} and on firm-level evidence for Portugal \citep{mergulhao2021}. The latter finds substantial heterogeneity in the wage--productivity nexus and reports that more than two thirds of Portuguese firms in its 2010--2016 sample did not raise wages in line with observed productivity growth. Related Portuguese evidence also studies how changes in the minimum wage are associated with wage and productivity dispersion across firms \citep{afonso2023}.
 
 \section{Data}
-The primary data source is Eurostat's \texttt{nama\_10\_lp\_ulc} dataset. Compensation per employee is measured by \texttt{D1\_SAL\_PER}; productivity is measured by \texttt{NLPR\_EMP}. Both are requested as \texttt{PC\_EU27\_2020\_MPPS\_CP}, an EU27=100 index based on Purchasing Power Standards at current prices. The analysis does not calculate real growth rates from PPS levels, because PPS is designed for cross-sectional price-level adjustment rather than temporal volume measurement.
+The primary data source is Eurostat's \texttt{nama\_10\_lp\_ulc} dataset. Compensation per employee is measured by \texttt{D1\_SAL\_PER}; productivity is measured by \texttt{NLPR\_PER}. Both are requested as \texttt{PC\_EU27\_2020\_MPPS\_CP}, an EU27=100 index based on Purchasing Power Standards at current prices. The analysis does not calculate real growth rates from PPS levels, because PPS is designed for cross-sectional price-level adjustment rather than temporal volume measurement.
 
 Compensation per employee and productivity per employed person do not have identical denominators: the latter includes self-employed persons. We therefore treat their difference as a descriptive comparison rather than an accounting identity, and register employment-composition and hour-based robustness checks.
+
+The source-contract history is preserved explicitly. The first provider-backed execution showed that the previously registered \texttt{NLPR\_EMP} request returned an empty productivity dimension under the selected PPS unit. The executable source contract was therefore amended to \texttt{NLPR\_PER} before any productivity observations, H1 estimate, H2 residual or primary release existed.
 
 A secondary analysis will use AMECO real compensation and productivity series for long-run decoupling and wage-share diagnostics.
 
@@ -50,19 +52,47 @@ estimated on comparator countries excluding Portugal. We then predict Portuguese
 \begin{equation}
 r_{PT,t}=\log W_{PT,t}-\widehat{\log W}_{PT,t}.
 \end{equation}
-Uncertainty for the Portuguese residual is obtained by resampling complete comparator-country histories.
+Uncertainty for the Portuguese residual is obtained by resampling complete comparator-country histories. The registered bootstrap uses 4,999 country-cluster replications.
 
 \section{Results}
-\emph{Intentionally blank until the frozen pipeline is run on retrieved source data.}
+For 2024, Portugal's compensation-per-employee index is 81.9 relative to EU27=100, implying an 18.1 percent shortfall. The productivity-per-employed-person index is 81.2, implying an 18.8 percent shortfall. Hence
+\begin{equation}
+\delta_{2024}
+=\log(81.9)-\log(81.2)
+=0.00858.
+\end{equation}
+The registered hypothesis $\delta_{2024}<0$ is therefore not supported. On the ratio scale, compensation is approximately 0.86 percent higher relative to the EU benchmark than productivity is.
+
+The comparator-country model is estimated on 26 countries over 2000--2024, excluding Portugal. The 2024 Portuguese conditional log residual is
+\begin{equation}
+r_{PT,2024}=0.05664,
+\end{equation}
+corresponding to a multiplicative residual of approximately 5.83 percent. The country-cluster bootstrap completed all 4,999 registered replications. Its 95 percent empirical interval is
+\begin{equation}
+[0.01913,\;0.09374]
+\end{equation}
+on the log scale, or approximately 1.93 to 9.83 percent on the multiplicative percentage scale.
+
+Thus the second registered directional hypothesis, $r_{PT,2024}<0$, is also not supported. The point estimate is positive and the registered bootstrap interval excludes zero on the positive side.
+
+These results are not evidence that Portuguese compensation is high in absolute terms. Portugal remains about 18 percent below the EU27 benchmark on both registered measures. Rather, the primary result is narrower: within this harmonised cross-country measurement, the Portuguese compensation shortfall in 2024 is not larger than the productivity shortfall, and the registered cross-country model does not identify an additional negative Portuguese compensation residual.
 
 \section{Robustness and alternative benchmarks}
-Planned checks include the EU-country median, euro-area comparators, Southern European comparators, hour-based measures where coverage permits, and alternative real-compensation deflators for the time-series layer.
+The primary result motivates rather than eliminates the planned robustness analysis. Checks include the EU-country median, euro-area comparators, Southern European comparators, hour-based measures where coverage permits, and alternative real-compensation deflators for the time-series layer. The employee-versus-employed-person denominator difference also makes self-employment composition an important robustness dimension.
+
+A separate dynamic analysis is required to test whether productivity gains pass through to real compensation over time. The cross-country level result does not settle that question.
 
 \section{Interpretation}
-A negative Portuguese wage residual would show that Portuguese compensation is lower than predicted by the cross-country productivity relationship and common year effects. It would not, by itself, identify monopsony, labour-market deregulation, taxation, sectoral composition, bargaining institutions or the labour share as a causal mechanism.
+The primary results reject the specific directional propositions registered for the 2024 cross-country level comparison. They do not imply a one-to-one productivity--wage mapping, nor do they identify the causal mechanisms determining Portuguese compensation.
+
+The positive conditional residual is a descriptive and predictive object. It may reflect the selected benchmark, sectoral mix, employment composition, hours, labour share, institutional structure or other omitted country characteristics. It should not be interpreted as evidence for or against monopsony, labour-market regulation, taxation, bargaining institutions or any single mechanism without additional analysis.
 
 \section{Conclusion}
-\emph{To be written after empirical results are authorised.}
+Portugal's 2024 compensation gap is not larger than its productivity gap under the registered Eurostat PPS definitions. Compensation per employee stands at 81.9 percent of the EU27 benchmark, compared with productivity per employed person at 81.2 percent. The excess compensation gap is therefore small and positive, not negative.
+
+The cross-country conditional benchmark points in the same direction. Portuguese compensation is approximately 5.83 percent above the level predicted by the registered productivity model, with a 95 percent country-cluster bootstrap interval of 1.93 to 9.83 percent. The study therefore finds no evidence for the hypothesised additional Portuguese pay penalty in this primary level specification.
+
+The natural next question is dynamic rather than rhetorical: when Portuguese productivity changes through time, how much of that change passes through to real labour compensation, and which institutional or compositional factors explain any decoupling? That question requires the separate real time-series and mechanism layers already registered for follow-up work.
 
 \bibliographystyle{apalike}
 \bibliography{references}

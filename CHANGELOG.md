@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0 — 2026-09-01
+
+- Complete the first provider-backed primary Eurostat analysis under the v0.2.4 source contract.
+- Pass the full empirical release gate, including source provenance, canonical-panel verification, deterministic result recalculation and 4,999/4,999 successful country-cluster bootstrap replications.
+- Record 2024 compensation at 81.9 and productivity at 81.2 relative to EU27=100.
+- Reject the registered directional claim that Portugal's compensation gap is larger than its productivity gap: the excess compensation log gap is +0.00858, equivalent to +0.86% on the ratio scale.
+- Reject the registered negative-residual claim: the 2024 conditional Portuguese compensation residual is +5.83%, with a 95% bootstrap interval of +1.93% to +9.83%.
+- Add `EMPIRICAL_RESULTS.md` and the machine-readable `results/primary_release_manifest.json`.
+- Replace the manuscript placeholder Results section with the provider-backed estimates and a conclusion that preserves the distinction between cross-country levels and dynamic wage–productivity pass-through.
+
 ## 0.2.4 — 2026-08-31
 
 - Run the first provider-backed Eurostat execution after GitHub-hosted runners became available.
