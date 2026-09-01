@@ -63,3 +63,20 @@ def test_fetch_wraps_transport_failure_as_eurostat_error() -> None:
     query = EurostatQuery(dataset="nama_10_lp_ulc", filters={"freq": "A"})
     with pytest.raises(EurostatError, match="Eurostat request failed"):
         fetch_jsonstat(query, session=_FailingSession())  # type: ignore[arg-type]
+
+
+def test_jsonstat_zero_sized_dimension_is_rejected_explicitly() -> None:
+    payload = {
+        "id": ["freq", "unit", "na_item", "geo", "time"],
+        "size": [1, 1, 0, 1, 1],
+        "dimension": {
+            "freq": {"category": {"index": {"A": 0}}},
+            "unit": {"category": {"index": {"PC_EU27_2020_MPPS_CP": 0}}},
+            "na_item": {"category": {"index": {}}},
+            "geo": {"category": {"index": {"PT": 0}}},
+            "time": {"category": {"index": {"2024": 0}}},
+        },
+        "value": {},
+    }
+    with pytest.raises(EurostatError, match="contains no observations"):
+        jsonstat_to_frame(payload)

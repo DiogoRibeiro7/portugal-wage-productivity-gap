@@ -54,19 +54,19 @@ The first analysis uses Eurostat `nama_10_lp_ulc` for both quantities under the 
 
 - frequency: `A`;
 - compensation: `D1_SAL_PER`, compensation per employee;
-- productivity: `NLPR_EMP`, nominal labour productivity per person employed;
+- productivity: `NLPR_PER`, nominal labour productivity per person employed;
 - unit: `PC_EU27_2020_MPPS_CP`, percentage of EU27 based on PPS at current prices;
 - benchmark: `EU27_2020`.
 
 In this unit the EU27 benchmark should equal 100, subject only to provider rounding. The pipeline treats that property as a data invariant rather than an assumption.
 
-### Source-code audit through v0.2.3
+### Source-code audit through v0.2.4
 
-The v0.1 specification used the wrong PPS unit code (`CP_MPPS`) but the correct **total-economy** nominal-productivity item (`NLPR_EMP`). v0.2.0 correctly replaced the unit with `PC_EU27_2020_MPPS_CP`, but it also replaced `NLPR_EMP` with `NLPR_PER`. That second change was a namespace error: the cited Eurostat CAPI methodological table defines `NLPR_PER` for regional productivity tables, whereas Eurostat's metadata for the total-economy `nama_10_lp_ulc` collection defines nominal labour productivity per person employed as `NLPR_EMP`.
+The provider identifier has required explicit corrections that remain visible in repository history. v0.2.3 restored `NLPR_EMP` after relying on Eurostat's ESMS prose definition. The first provider-backed execution on 31 August 2026 then showed that this combination was not executable: the wage request succeeded, but `NLPR_EMP` with `PC_EU27_2020_MPPS_CP` returned a valid JSON-stat object with a zero-sized `na_item` dimension and no productivity observations.
 
-v0.2.3 therefore restores `NLPR_EMP`. The historical v0.2.0 amendment is retained unchanged as an audit record rather than rewritten. No successful primary-data retrieval by this repository occurred before the v0.2.3 correction.
+The current Eurostat indicator/unit table maps the intended annual nominal labour productivity-per-person series in `nama_10_lp_ulc` to `NLPR_PER`. v0.2.4 therefore restores `NLPR_PER`. This is recorded as a **post-partial-acquisition source amendment**: wage observations had been retrieved, but productivity observations had not, so neither H1 nor H2 was computable. The research question, directional hypotheses, primary year, comparator set, model and bootstrap specification remain unchanged.
 
-This correction changes only **how the already intended total-economy estimand is retrieved**. It does not change the research question, directional hypotheses, primary year, comparator set, model or bootstrap specification.
+The v0.2.3 audit and lock are preserved unchanged. The live-run hashes and partial data-exposure statement are recorded in `artifacts/source_contract_execution_audit_v0.2.4.json`.
 
 ### v0.2.1 acquisition patch
 

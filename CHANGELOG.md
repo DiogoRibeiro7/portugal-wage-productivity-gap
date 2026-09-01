@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.4 — 2026-08-31
+
+- Run the first provider-backed Eurostat execution after GitHub-hosted runners became available.
+- Record successful `D1_SAL_PER` retrieval and the zero-sized `na_item` response for `NLPR_EMP` under the registered PPS unit.
+- Restore `NLPR_PER` for the intended live `nama_10_lp_ulc` nominal productivity-per-person contract.
+- Classify the correction as post-partial-acquisition: wage observations were available, productivity observations and H1/H2 results were not.
+- Preserve the v0.2.3 audit and design lock unchanged and add a machine-readable execution audit.
+- Reject zero-sized JSON-stat cubes explicitly at the parser boundary.
+- Keep the research question, 2024 endpoint, comparator universe, model and 4,999-country bootstrap unchanged.
+
 ## 0.2.3 — 2026-08-26
 
 - Re-audit the primary `nama_10_lp_ulc` source contract against Eurostat's total-economy productivity metadata.

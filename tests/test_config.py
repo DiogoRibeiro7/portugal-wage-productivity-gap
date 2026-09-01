@@ -24,9 +24,9 @@ def test_repository_config_loads_with_registered_source_contract() -> None:
     assert "PT" not in config.comparator_countries
 
 
-def test_total_economy_productivity_identifier_is_nlpr_emp() -> None:
-    """Pin the Eurostat total-economy namespace independently of YAML configuration."""
-    assert NOMINAL_PRODUCTIVITY_PER_PERSON == "NLPR_EMP"
+def test_total_economy_productivity_identifier_is_nlpr_per() -> None:
+    """Pin the provider-backed total-economy code independently of YAML configuration."""
+    assert NOMINAL_PRODUCTIVITY_PER_PERSON == "NLPR_PER"
 
 
 def test_obsolete_v01_unit_code_is_rejected(tmp_path: Path) -> None:
@@ -39,11 +39,11 @@ def test_obsolete_v01_unit_code_is_rejected(tmp_path: Path) -> None:
         load_config(config_path)
 
 
-def test_regional_nlpr_per_code_is_rejected_for_total_economy_contract(
+def test_metadata_nlpr_emp_alias_is_rejected_for_primary_contract(
     tmp_path: Path,
 ) -> None:
     payload = yaml.safe_load(Path("configs/study.yml").read_text(encoding="utf-8"))
-    payload["primary_levels"]["productivity_indicator"] = "NLPR_PER"
+    payload["primary_levels"]["productivity_indicator"] = "NLPR_EMP"
     config_path = tmp_path / "study.yml"
     config_path.write_text(yaml.safe_dump(payload), encoding="utf-8")
 

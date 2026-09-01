@@ -188,6 +188,10 @@ def jsonstat_to_frame(payload: Mapping[str, Any]) -> pd.DataFrame:
     n_cells = 1
     for size in sizes_raw:
         n_cells *= size
+    if n_cells == 0:
+        raise EurostatError(
+            "JSON-stat response contains no observations for the requested dimensions"
+        )
     values = _flat_values(payload, n_cells)
     statuses = _flat_status(payload, n_cells)
 

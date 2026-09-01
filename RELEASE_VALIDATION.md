@@ -1,81 +1,60 @@
-# Release validation — v0.2.3
+# Release validation — v0.2.4
 
-Validation performed on 2026-08-26.
+Validation prepared on 2026-08-31.
 
 ## Release boundary
 
-v0.2.3 is a **pre-retrieval source-contract audit release**. It does not contain primary Eurostat observations and it does not claim an empirical result. v0.3 remains reserved for the first registered Eurostat snapshot that passes the existing empirical release gate.
+v0.2.4 is a **post-partial-acquisition source-contract correction**, not the empirical v0.3 release. During the first provider-backed execution, the wage request succeeded but the productivity request for `NLPR_EMP` returned no observations. No H1 gap, H2 residual or primary-release manifest was produced.
 
-The research question, H1/H2 estimands, 2024 primary endpoint, EU27 benchmark, comparator-country universe, pooled log-level model, exclusion of Portugal from model fitting, 4,999-replication country bootstrap and non-causal interpretation are unchanged.
+The research question, 2024 primary endpoint, EU27 benchmark, comparator-country universe, pooled log-level model, exclusion of Portugal from model fitting, 4,999-replication country bootstrap and non-causal interpretation remain unchanged.
 
-## Source-contract correction
+## Provider-backed evidence
 
-A direct audit of Eurostat's metadata for the total-economy productivity collection identified a namespace mistake introduced in v0.2.0.
+GitHub Actions run `33316491224`, attempt 3, executed commit `8c2faa422e2551c48302b234682c82ea69f0398f` on a GitHub-hosted Linux runner. Installation, design-lock verification and registered query capture completed successfully.
 
-The correct total-economy contract is:
+The Eurostat wage response (`D1_SAL_PER`) contained observations and has SHA-256:
+
+```text
+a570c6d6094732af27dd39e13d48fa61ae7350deea70d38c51bf3cdb935bc164
+```
+
+The productivity response requested `NLPR_EMP` under `PC_EU27_2020_MPPS_CP` and returned JSON-stat size `[1, 1, 0, 28, 25]`, with an empty `na_item` dimension and no productivity observations. Its SHA-256 is:
+
+```text
+e426db9b9cce2fa1eeb918d88d48645fc727a429ddd66cf98e4a752d5a3ee232
+```
+
+The workflow evidence bundle has artifact ID `9764195736` and SHA-256:
+
+```text
+092fd9132b0d4bd94027db5780b3f111b03816221b3536b23c5a0953ada1b391
+```
+
+## Corrected source contract
 
 ```text
 dataset       nama_10_lp_ulc
 frequency     A
 unit          PC_EU27_2020_MPPS_CP
 wage item     D1_SAL_PER
-productivity  NLPR_EMP
+productivity  NLPR_PER
 benchmark     EU27_2020
 ```
 
-Eurostat's total-economy productivity metadata defines `NLPR_EMP` as nominal labour productivity per person employed. The `NLPR_PER` identifier used in v0.2.0 appears in Eurostat's regional productivity tables and was incorrectly transferred to `nama_10_lp_ulc`.
+Eurostat's ESMS prose and its current indicator/unit table are inconsistent on the productivity identifier. The live provider response establishes that `NLPR_EMP` has no observations for the registered unit; the indicator/unit table maps the intended annual nominal productivity-per-person series to `NLPR_PER`. v0.2.4 therefore restores `NLPR_PER` and records the conflict explicitly.
 
-The v0.2.0 amendment is deliberately preserved unchanged. The correction is recorded separately in `artifacts/source_contract_audit_v0.2.3.json`, which is itself included in the new design lock. The exact v0.2.2 design lock is archived at `artifacts/design_lock_v0.2.2.json`.
-
-No successful primary-data retrieval or primary empirical release occurred before this correction.
+The v0.2.3 source audit and exact v0.2.3 design lock remain preserved unchanged. The execution-based correction is stored in `artifacts/source_contract_execution_audit_v0.2.4.json`.
 
 ## Machine checks
 
-- `python -m compileall -q src tests`: **passed**
-- `PYTHONPATH=src pytest -q`: **40/40 tests passed**
-- `PYTHONPATH=src pytest --cov=pt_wage_gap --cov-report=term -q`: **40/40 passed; 80% statement coverage**
-- repository configuration loads with `NLPR_EMP`: **passed**
-- literal source-contract test pins `NLPR_EMP` independently of YAML: **passed**
-- `NLPR_PER` is rejected by the total-economy source contract: **passed**
-- obsolete `CP_MPPS` unit is rejected: **passed**
-- canonical productivity API query contains `na_item=NLPR_EMP`: **confirmed**
-- current design-lock manifest and all locked file hashes: **passed**
-- current release status: **blocked, evidence tier `none`**
-- source/test Python lines longer than the configured 100-character limit: **none**
-- primary Eurostat raw observations included in the release: **none**
-- primary empirical release manifest included in the release: **none**
-
-`ruff` and `mypy` remain configured in `pyproject.toml` but are not installed in this execution runtime, so neither is reported as a pass.
-
-## Current design lock
-
-The v0.2.3 lock contains **17 files**, including the machine-readable source-contract audit note.
-
-```text
-manifest_sha256 = 50dcbac6c7a8b93a93f496a4b00cdb9f807006edb8ee6fb69ead75421bf5d426
-file_sha256     = e0d8e297b3e2dfaaf2bfbd1950f1c4f0c65ff8b2c34f5053de620ddbefe8cf6b
-```
-
-The archived v0.2.2 lock has SHA-256:
-
-```text
-4f08e2370e5c5cc0261ecde2e70ce4ef5aeec9fa07952322b511198b9bd88e99
-```
-
-The v0.2.3 source-contract audit note has SHA-256:
-
-```text
-282d47f964943a52924a776c9018ec6911c52cfd2d657788e8df19a9092d13c0
-```
-
-## Acquisition status
-
-After the new lock was created and verified, the registered live Eurostat acquisition was retried. The runtime still fails at DNS resolution for `ec.europa.eu`; the CLI returns the controlled Eurostat transport error with exit code 2. No raw file was created and no secondary or manually copied observation was substituted.
-
-The primary results release therefore remains blocked by construction.
+- `python -m compileall -q src tests`: **passed locally**
+- direct configuration/source-contract smoke check using `NLPR_PER`: **passed locally**
+- explicit zero-sized JSON-stat regression smoke check: **passed locally**
+- full `pytest`, `ruff` and `mypy`: **delegated to GitHub CI for this correction PR**
+- primary empirical release manifest: **absent**
 
 ## Scientific status
 
-The important result of v0.2.3 is not a number. It is that the repository now asks Eurostat for the intended **total-economy** productivity series rather than a regional-code analogue. Because the mistake was caught before a successful primary retrieval, the statistical design can remain unchanged while the source namespace is repaired transparently.
+The first live execution did not test either directional hypothesis because the productivity side of the source contract was empty. v0.2.4 changes only the provider identifier used to retrieve the already intended nominal productivity-per-person concept and adds an explicit parser failure for zero-sized provider responses.
 
-The next scientific version remains v0.3.x and requires a registered provider snapshot followed by successful execution of the existing 2000–2024 analysis and primary-release gate.
+v0.3 remains reserved for a provider-backed run that builds the canonical panel, completes the frozen analysis and passes the primary empirical release gate.
