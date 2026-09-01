@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portugal-wage-productivity-gap"
-version = "0.2.4"
+version = "0.3.0"
 description = "Reproducible analysis of Portugal's wage gap relative to its productivity gap"
 authors = ["Diogo Ribeiro"]
 readme = "README.md"
