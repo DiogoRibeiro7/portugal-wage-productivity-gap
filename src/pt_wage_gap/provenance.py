@@ -4,9 +4,12 @@ from __future__ import annotations
 
 import hashlib
 import json
-from datetime import datetime, timezone
+from collections.abc import Iterable, Mapping
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Iterable, Mapping, cast
+from typing import cast
+
+from dataexcept import FileReadError, FileWriteError
 
 
 class DesignLockError(ValueError):
@@ -21,15 +24,18 @@ def sha256_bytes(data: bytes) -> str:
 def sha256_file(path: Path) -> str:
     """Return the hexadecimal SHA-256 digest of a file."""
     hasher = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            hasher.update(chunk)
+    try:
+        with path.open("rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                hasher.update(chunk)
+    except OSError as exc:
+        raise FileReadError(str(path), exc) from exc
     return hasher.hexdigest()
 
 
 def utc_now_iso() -> str:
     """Return the current UTC timestamp in ISO 8601 format."""
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def _canonical_manifest_bytes(payload: Mapping[str, object]) -> bytes:
@@ -59,10 +65,13 @@ def freeze_design(
     }
     payload["manifest_sha256"] = sha256_bytes(_canonical_manifest_bytes(payload))
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    try:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(
+            json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+    except OSError as exc:
+        raise FileWriteError(str(output_path), exc) from exc
     return payload
 
 
@@ -73,8 +82,11 @@ def verify_design_lock(repo_root: Path, manifest_path: Path) -> None:
     manifest before resolving any design file against the repository root.
     """
     try:
-        raw_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        try:
+            raw_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except OSError as exc:
+            raise FileReadError(str(manifest_path), exc) from exc
+    except (FileReadError, json.JSONDecodeError) as exc:
         raise DesignLockError(f"Unable to read design lock: {manifest_path}") from exc
     if not isinstance(raw_payload, dict):
         raise DesignLockError("Design-lock root must be a JSON object")
