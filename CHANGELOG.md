@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Classify provenance and figure I/O failures with DataExcept while preserving original causes and the existing scientific design lock.
+
 ## 0.3.0 — 2026-09-01
 
 - Complete the first provider-backed primary Eurostat analysis under the v0.2.4 source contract.

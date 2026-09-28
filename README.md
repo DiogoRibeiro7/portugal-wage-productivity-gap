@@ -88,6 +88,10 @@ poetry run ruff check .
 poetry run mypy src tests
 ```
 
+DataExcept 1.7 classifies provenance read and write failures and figure CSV loading and
+output failures, retaining the source path and original exception. The design-lock
+manifest and registered design files remain unchanged.
+
 Validate the exact Eurostat source contract:
 
 ```bash

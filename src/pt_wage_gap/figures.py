@@ -6,11 +6,30 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from dataexcept import DataLoadingError, FileWriteError
+from matplotlib.figure import Figure
+
+
+def _read_frame(path: Path) -> pd.DataFrame:
+    try:
+        return pd.read_csv(path)
+    except (OSError, UnicodeError, pd.errors.ParserError, pd.errors.EmptyDataError) as exc:
+        raise DataLoadingError(str(path), exc) from exc
+
+
+def _save_figure(figure: Figure, output_path: Path) -> None:
+    try:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        figure.savefig(output_path, dpi=200)
+    except OSError as exc:
+        raise FileWriteError(str(output_path), exc) from exc
+    finally:
+        plt.close(figure)
 
 
 def plot_gap_history(gap_path: Path, output_path: Path) -> None:
     """Plot Portuguese wage and productivity shortfalls against the benchmark."""
-    frame = pd.read_csv(gap_path)
+    frame = _read_frame(gap_path)
     required = {"year", "wage_shortfall_pct", "productivity_shortfall_pct"}
     missing = required.difference(frame.columns)
     if missing:
@@ -30,14 +49,12 @@ def plot_gap_history(gap_path: Path, output_path: Path) -> None:
     axis.set_title("Portugal: compensation and productivity gaps")
     axis.legend()
     figure.tight_layout()
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    figure.savefig(output_path, dpi=200)
-    plt.close(figure)
+    _save_figure(figure, output_path)
 
 
 def plot_conditional_residuals(residual_path: Path, output_path: Path) -> None:
     """Plot Portuguese conditional compensation residuals through time."""
-    frame = pd.read_csv(residual_path)
+    frame = _read_frame(residual_path)
     required = {"year", "multiplicative_residual_pct"}
     missing = required.difference(frame.columns)
     if missing:
@@ -50,6 +67,4 @@ def plot_conditional_residuals(residual_path: Path, output_path: Path) -> None:
     axis.set_ylabel("Observed minus predicted compensation (%)")
     axis.set_title("Portugal: conditional compensation residual")
     figure.tight_layout()
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    figure.savefig(output_path, dpi=200)
-    plt.close(figure)
+    _save_figure(figure, output_path)
